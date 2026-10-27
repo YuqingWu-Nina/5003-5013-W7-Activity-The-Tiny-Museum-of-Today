@@ -1,0 +1,577 @@
+:root {
+  color: #21352e;
+  background: #eef2f0;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3.5rem;
+  line-height: 1.6;
+}
+
+.museum-card { display: grid; gap: 1.5rem; }
+
+.masthead {
+  padding-bottom: 1rem;
+  color: #53645a;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  border-bottom: 1px solid #b9c9c5;
+}
+
+.masthead p, p { margin: 0; }
+
+.intro { max-width: 42rem; }
+
+.eyebrow {
+  margin-bottom: 0.75rem;
+  color: #3d6f69;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h1, h2 { color: #21352e; line-height: 1.08; }
+
+h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.8rem, 7vw, 5.7rem);
+  letter-spacing: -0.055em;
+}
+
+.description {
+  margin-top: 1rem;
+  color: #53645a;
+  font-size: 1.05rem;
+}
+
+@media (max-width: 520px) {
+  body { padding: 1.5rem 1rem 2.5rem; }
+}
+
+
+/* Scoped styles for the Curator's Note and category controls. */
+.museum-controls {
+  --card-bg: #f5f0e5;
+  --border-color: #21352e;
+  --text-main: #21352e;
+  --text-muted: #53645a;
+  --tag-bg: #e8d0bd;
+  --tag-hover: #d3bba8;
+  --tag-active-bg: #21352e;
+  --tag-active-text: #f5f0e5;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-family: inherit;
+  color: var(--text-main);
+}
+
+/* Museum Frame Cards */
+.museum-controls .card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+  padding: 1.5rem;
+}
+
+/* Section Headers */
+.museum-controls .card-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Curator's Note Card Layout */
+.museum-controls .curator-note {
+  display: flex;
+  flex-direction: column;
+}
+
+.museum-controls .curator-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.museum-controls .quote-text {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.museum-controls .prompt-btn {
+  background: transparent;
+  border: 1px dashed var(--border-color);
+  border-radius: 2px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.museum-controls .prompt-btn:hover {
+  background-color: var(--tag-bg);
+  border-style: solid;
+}
+
+/* Exhibits and Category Card Layout */
+.museum-controls .exhibits-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.museum-controls .category-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.museum-controls .tag {
+  font-size: 0.875rem;
+  font-family: inherit;
+  padding: 0.4rem 0.9rem;
+  background-color: var(--tag-bg);
+  color: var(--text-main);
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.museum-controls .tag:hover {
+  background-color: var(--tag-hover);
+}
+
+.museum-controls .tag.active {
+  background-color: var(--tag-active-bg);
+  color: var(--tag-active-text);
+}
+
+.museum-controls .tag-count {
+  opacity: 0.75;
+  margin-left: 0.25rem;
+  font-size: 0.8em;
+}
+
+.museum-controls .exhibits-description {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+.museum-gallery {
+  --mg-ink: #21352e;
+  --mg-muted: #69776f;
+  --mg-mat: #eee4cd;
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: start;
+  gap: 18px;
+  padding-bottom: 38px;
+
+  color: var(--mg-ink);
+  font-family: Arial, sans-serif;
+}
+
+.museum-gallery,
+.museum-gallery * {
+  box-sizing: border-box;
+}
+
+.museum-gallery .mg-exhibit {
+  min-width: 0;
+}
+
+/* Frames */
+
+.museum-gallery .mg-frame {
+  padding: 10px;
+  background: var(--mg-mat);
+  border: 1px solid var(--mg-ink);
+  box-shadow: 3px 3px 0 rgb(33 53 46 / 13%);
+
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.museum-gallery .mg-exhibit:hover .mg-frame,
+.museum-gallery .mg-exhibit:focus-within .mg-frame {
+  transform: translateY(-4px);
+  box-shadow: 5px 7px 0 rgb(33 53 46 / 13%);
+}
+
+.museum-gallery .mg-art {
+  position: relative;
+  aspect-ratio: 0.85;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Exhibit 01: Blue Window */
+
+.museum-gallery .mg-blue {
+  background: linear-gradient(
+    160deg,
+    #bdd9df,
+    #8eafbe 55%,
+    #698799
+  );
+}
+
+.museum-gallery .mg-glow {
+  position: absolute;
+  width: 75%;
+  height: 27%;
+  top: 20%;
+  right: -23%;
+
+  border-radius: 50%;
+  background: #f4e69c;
+  filter: blur(16px);
+}
+
+.museum-gallery .mg-window-bar {
+  position: absolute;
+  width: 2%;
+  height: 57%;
+  left: 31%;
+  top: 25%;
+  background: #233e4d;
+}
+
+.museum-gallery .mg-windowsill {
+  position: absolute;
+  width: 112%;
+  height: 38%;
+  left: -17%;
+  bottom: -7%;
+
+  border-radius: 50% 50% 0 0;
+  background: #243e4e;
+}
+
+/* Exhibit 02: Warm Coffee */
+
+.museum-gallery .mg-coffee {
+  background: #d9a77d;
+}
+
+.museum-gallery .mg-table-light {
+  position: absolute;
+  width: 74%;
+  height: 17%;
+  top: 13%;
+  left: 13%;
+
+  border-radius: 50%;
+  background: #f4dba1;
+}
+
+.museum-gallery .mg-saucer {
+  position: absolute;
+  width: 27%;
+  height: 22%;
+  left: 35%;
+  top: 43%;
+
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at 50% 35%,
+    #bcb1cf 50%,
+    #a89bbb 70%,
+    #c8bdd8 74%
+  );
+
+  box-shadow: 3px 5px 0 rgb(99 65 56 / 20%);
+}
+
+.museum-gallery .mg-handle {
+  position: absolute;
+  width: 13%;
+  height: 13%;
+  top: 43%;
+  left: 52%;
+
+  border: 5px solid #b6a8ca;
+  border-radius: 50%;
+  box-shadow: 2px 3px 0 rgb(99 65 56 / 20%);
+}
+
+.museum-gallery .mg-cup {
+  position: absolute;
+  width: 23%;
+  height: 23%;
+  top: 39%;
+  left: 37%;
+
+  border-radius: 48% 48% 45% 45%;
+  background: linear-gradient(100deg, #bcb0d0, #a697bd);
+  box-shadow: inset 2px -3px 3px rgb(89 72 114 / 20%);
+}
+
+.museum-gallery .mg-drink {
+  position: absolute;
+  width: 22%;
+  height: 18%;
+  top: 39%;
+  left: 37.5%;
+
+  border: 4px solid #c7bad6;
+  border-radius: 50%;
+  background: linear-gradient(#6c4549, #86555b);
+  box-shadow: inset 0 2px 2px rgb(51 29 32 / 35%);
+}
+
+/* Exhibit 03: Rain During Class */
+
+.museum-gallery .mg-rain {
+  background: linear-gradient(
+    #adbbc3 0 42%,
+    #6d8591 42% 100%
+  );
+}
+
+.museum-gallery .mg-drop {
+  position: absolute;
+  width: 2px;
+  height: 8%;
+
+  background: #deebeb;
+  transform: rotate(17deg);
+  transition: translate 250ms ease;
+}
+
+.museum-gallery .mg-drop:nth-child(1) {
+  left: 12%;
+  top: 18%;
+}
+
+.museum-gallery .mg-drop:nth-child(2) {
+  left: 49%;
+  top: 15%;
+}
+
+.museum-gallery .mg-drop:nth-child(3) {
+  left: 84%;
+  top: 13%;
+}
+
+.museum-gallery .mg-drop:nth-child(4) {
+  left: 30%;
+  top: 45%;
+}
+
+.museum-gallery .mg-drop:nth-child(5) {
+  left: 67%;
+  top: 39%;
+}
+
+.museum-gallery .mg-drop:nth-child(6) {
+  left: 74%;
+  top: 71%;
+}
+
+.museum-gallery .mg-rain:hover .mg-drop {
+  translate: -3px 10px;
+}
+
+/* Exhibit 04: Paper Note */
+
+.museum-gallery .mg-words {
+  display: grid;
+  place-items: center;
+  background: #e8d8ae;
+}
+
+.museum-gallery .mg-paper-note {
+  width: 70%;
+  margin: 0;
+  padding: 9% 3%;
+
+  transform: rotate(-7deg);
+  background: #fff0c7;
+  color: #914e3d;
+  box-shadow: 5px 5px 0 rgb(130 100 49 / 22%);
+
+  font-family: Georgia, serif;
+  font-size: clamp(1.3rem, 2.6vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+}
+
+/* Labels, Titles, and Captions */
+
+.museum-gallery .mg-label {
+  margin: 16px 2px 8px;
+  color: var(--mg-muted);
+
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+}
+
+.museum-gallery .mg-title {
+  margin: 0 2px 10px;
+  color: var(--mg-ink);
+
+  font-family: Georgia, serif;
+  font-size: clamp(1.1rem, 1.65vw, 1.65rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+}
+
+.museum-gallery .mg-caption {
+  margin: 0 2px;
+  color: var(--mg-muted);
+
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Click to Expand — HTML/CSS Only */
+
+.museum-gallery .mg-details {
+  margin: 14px 2px 0;
+  color: var(--mg-ink);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.museum-gallery .mg-details summary {
+  width: fit-content;
+  cursor: pointer;
+  text-underline-offset: 4px;
+}
+
+.museum-gallery .mg-details summary:hover {
+  text-decoration: underline;
+}
+
+.museum-gallery .mg-details summary:focus-visible {
+  outline: 2px solid var(--mg-ink);
+  outline-offset: 5px;
+}
+
+.museum-gallery .mg-details[open] summary {
+  font-weight: 700;
+}
+
+.museum-gallery .mg-details p {
+  margin: 10px 0 0;
+  padding: 12px;
+
+  border-left: 2px solid #d2b79b;
+  background: #eee4cd;
+  color: #53645a;
+}
+
+/* Tablet: Two Columns */
+
+@media (max-width: 800px) {
+  .museum-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 18px;
+  }
+
+  .museum-gallery .mg-title {
+    font-size: 1.4rem;
+  }
+
+  .museum-gallery .mg-paper-note {
+    font-size: clamp(1.5rem, 4.5vw, 2.4rem);
+  }
+}
+
+/* Phone: One Column */
+
+@media (max-width: 480px) {
+  .museum-gallery {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+  }
+
+  .museum-gallery .mg-paper-note {
+    font-size: 2.2rem;
+  }
+}
+
+/* Respect Reduced Motion Preferences */
+
+@media (prefers-reduced-motion: reduce) {
+  .museum-gallery .mg-frame,
+  .museum-gallery .mg-drop {
+    transition: none;
+  }
+
+  .museum-gallery .mg-exhibit:hover .mg-frame,
+  .museum-gallery .mg-exhibit:focus-within .mg-frame {
+    transform: none;
+  }
+
+  .museum-gallery .mg-rain:hover .mg-drop {
+    translate: none;
+  }
+}
+
+.acquisition {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 25px;
+    background-color: #e8d0bd;
+    border: 1px solid #21352e;
+    }
+
+    .future-note {
+        width:100%;
+        margin: 0;
+        color: #69776f;
+        font-size: 0.75rem;
+        line-height: 1.5;
+    }
+
+    .acquisition h2 {
+        margin: 0;
+        font-size: 1.1rem;
+        line-height: 1.25;
+    }
+
+    .acquisition button {
+        background-color: #21352e;
+        color: #f5f0e5;
+        border: 1px solid #21352e;
+        padding: 13px 16px;
+        font-size: 0.77rem;
+        font-weight: bold;
+    }
