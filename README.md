@@ -11,9 +11,9 @@ Our purpose is to make reflection feel light and playful. The project treats eve
 
 ## Live demo
 
-[Open the demo](https://tiny-museum-of-today.yw4782168231.chatgpt.site)
+[Open the demo](https://yuqingwu-nina.github.io/5003-5013-W7-Activity-The-Tiny-Museum-of-Today/The%20Tiny%20Museum%20of%20Today.html)
 
-The demo is private and may ask the viewer to sign in with ChatGPT.
+The demo is publicly available through GitHub Pages.
 
 ## What the user sees
 
